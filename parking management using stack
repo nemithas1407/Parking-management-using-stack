@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parking Garage Using Stack</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f4f8;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 450px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        input {
+            padding: 10px;
+            width: 60%;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin: 8px;
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #parking {
+            margin-top: 20px;
+            line-height: 2;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Parking Garage</h2>
+        <p>Stack Data Structure (LIFO)</p>
+
+        <input type="text" id="car" placeholder="Enter car name">
+        <br>
+
+        <button onclick="parkCar()">Park Car</button>
+        <button onclick="removeCar()">Remove Car</button>
+
+        <div id="parking"></div>
+    </div>
+
+    <script>
+        let stack = [];
+
+        function displayCars() {
+            let output = "<h3>Parked Cars (Top to Bottom)</h3>";
+
+            if (stack.length === 0) {
+                output += "No cars parked.";
+            } else {
+                for (let i = stack.length - 1; i >= 0; i--) {
+                    output += stack[i] + "<br>";
+                }
+            }
+
+            document.getElementById("parking").innerHTML = output;
+        }
+
+        function parkCar() {
+            let car = document.getElementById("car").value.trim();
+
+            if (car !== "") {
+                stack.push(car);
+                document.getElementById("car").value = "";
+                displayCars();
+            } else {
+                alert("Please enter a car name!");
+            }
+        }
+
+        function removeCar() {
+            if (stack.length > 0) {
+                alert("Car leaving: " + stack.pop());
+            } else {
+                alert("Parking garage is empty!");
+            }
+
+            displayCars();
+        }
+
+        displayCars();
+    </script>
+
+</body>
+</html>
